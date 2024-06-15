@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="_layout" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sửa Thông Tin Nhân Viên</title>
+</head>
+<body>
+<div layout:fragment="content" class="container body-content">
+    <form th:action="@{/nhanvien/edit}" th:object="${nhanvien}" method="post" class="form">
+        <input type="hidden" th:field="*{maNV}"/>
+
+        <div class="form-group">
+            <label for="maNV">Mã Nhân Viên</label>
+            <input type="text" class="form-control" id="maNV" th:field="*{maNV}" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="tenNV">Tên Nhân Viên</label>
+            <input type="text" class="form-control" id="tenNV" th:field="*{tenNV}">
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('tenNV')}" th:errors="*{tenNV}"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="phai">Giới Tính</label>
+            <select class="form-control" id="phai" th:field="*{phai}">
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="noiSinh">Nơi Sinh</label>
+            <input type="text" class="form-control" id="noiSinh" th:field="*{noiSinh}">
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('noiSinh')}" th:errors="*{noiSinh}"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="maPhong">Mã Phòng</label>
+            <input type="text" class="form-control" id="maPhong" th:field="*{maPhong}">
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('maPhong')}" th:errors="*{maPhong}"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="luong">Lương</label>
+            <input type="number" class="form-control" id="luong" th:field="*{luong}">
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('luong')}" th:errors="*{luong}"></div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Lưu Thay Đổi</button>
+    </form>
+</div>
+</body>
+</html>

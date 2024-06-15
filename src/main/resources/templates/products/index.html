@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="_layout" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh Sách Nhân Viên</title>
+</head>
+<body>
+<div layout:fragment="content" class="container body-content">
+    <a th:href="@{/nhanvien/create}" class="btn btn-primary">Thêm Nhân Viên</a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Mã Nhân Viên</th>
+            <th scope="col">Tên Nhân Viên</th>
+            <th scope="col">Giới Tính</th>
+            <th scope="col">Nơi Sinh</th>
+            <th scope="col">Mã Phòng</th>
+            <th scope="col">Lương</th>
+            <th scope="col">Thao Tác</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="nhanvien : ${listnhanvien}">
+            <td th:text="${nhanvien.maNV}"></td>
+            <td th:text="${nhanvien.tenNV}"></td>
+            <td th:text="${nhanvien.phai}"></td>
+            <td th:text="${nhanvien.noiSinh}"></td>
+            <td th:text="${nhanvien.maPhong}"></td>
+            <td th:text="${nhanvien.luong}"></td>
+            <td>
+                <a th:href="@{/nhanvien/edit/{id}(id=${nhanvien.maNV})}" class="btn btn-secondary">Sửa</a>
+                <form th:action="@{/nhanvien/delete/{id}(id=${nhanvien.maNV})}" method="post">
+                    <input type="hidden" name="_method" value="delete">
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa nhân viên này?');">Xóa</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
